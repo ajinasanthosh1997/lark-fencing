@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Complete your LARK Fencing order using secure online card payment.">
+  <title>Secure checkout | LARK Fencing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/commerce.js" defer></script>
+</head>
+<body data-page="checkout">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header checkout-header"><div class="container nav-wrap"><a class="brand" href="index.html"><img src="assets/images/logo.png" alt=""><span>LARK Fencing</span></a><a class="checkout-return" href="cart.html">← Return to cart</a><span class="checkout-security">Secure checkout</span></div></header>
+
+  <main id="main" class="checkout-main">
+    <section class="checkout-intro"><div class="container"><p class="eyebrow">Online payment</p><h1>Complete your <em>order.</em></h1><div class="checkout-progress" aria-label="Checkout progress"><span class="complete"><b>1</b> Cart</span><i></i><span class="active"><b>2</b> Details &amp; payment</span><i></i><span><b>3</b> Confirmation</span></div></div></section>
+
+    <section class="checkout-section"><div class="container">
+      <div class="checkout-empty" data-checkout-empty hidden><span>0</span><h2>There is nothing to check out.</h2><p>Add a priced product to your cart before continuing.</p><a class="button" href="catalog.html">Browse products <span>→</span></a></div>
+
+      <div class="checkout-layout" data-checkout-content hidden>
+        <form class="checkout-form" data-checkout-form novalidate>
+          <section class="checkout-panel"><div class="checkout-panel-heading"><span>01</span><div><p class="eyebrow">Contact</p><h2>Your contact details.</h2></div></div><div class="checkout-fields two-column"><label><span>Email address *</span><input type="email" name="email" autocomplete="email" required placeholder="name@example.com"><small class="field-error">Enter a valid email address.</small></label><label><span>Phone number *</span><input type="tel" name="phone" autocomplete="tel" required placeholder="089 948 0832"><small class="field-error">Enter your phone number.</small></label></div></section>
+
+          <section class="checkout-panel"><div class="checkout-panel-heading"><span>02</span><div><p class="eyebrow">Delivery</p><h2>Where should we deliver?</h2></div></div><div class="checkout-fields two-column"><label><span>First name *</span><input name="firstName" autocomplete="given-name" required></label><label><span>Last name *</span><input name="lastName" autocomplete="family-name" required></label><label class="full"><span>Address *</span><input name="address" autocomplete="address-line1" required placeholder="House number and street"></label><label><span>Town or city *</span><input name="city" autocomplete="address-level2" required></label><label><span>County *</span><select name="county" autocomplete="address-level1" required><option value="">Choose county</option><option>Dublin</option><option>Kildare</option><option>Meath</option><option>Wicklow</option><option>Laois</option><option>Offaly</option><option>Other</option></select></label><label><span>Eircode *</span><input name="eircode" autocomplete="postal-code" required placeholder="D12 E398"></label><label class="full"><span>Delivery notes</span><textarea name="notes" rows="3" placeholder="Gate access, preferred delivery instructions, or fitting notes"></textarea></label></div><div class="delivery-notice"><span>▣</span><div><strong>Delivery charge confirmed from your address</strong><small>The live gateway should calculate delivery before the final payment is authorised.</small></div></div></section>
+
+          <section class="checkout-panel payment-panel"><div class="checkout-panel-heading"><span>03</span><div><p class="eyebrow">Payment</p><h2>Secure card payment.</h2></div></div><div class="payment-secure-line"><span>Card</span><div class="card-brands" aria-label="Accepted cards"><b>VISA</b><b>MC</b><b>AMEX</b></div><small>Encrypted payment</small></div><div class="checkout-fields"><label><span>Name on card *</span><input name="cardName" autocomplete="cc-name" required placeholder="Name as shown on card"></label><label><span>Card number *</span><span class="card-input"><input name="cardNumber" inputmode="numeric" autocomplete="cc-number" required maxlength="23" placeholder="1234 5678 9012 3456"><b aria-hidden="true">▰</b></span><small class="field-error">Enter a valid card number.</small></label><div class="card-field-row"><label><span>Expiry date *</span><input name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" required maxlength="5" placeholder="MM/YY"></label><label><span>Security code *</span><input name="cardCvc" inputmode="numeric" autocomplete="cc-csc" required maxlength="4" placeholder="CVC"></label></div></div><p class="gateway-design-note"><strong>Payment design preview:</strong> connect these fields to provider-hosted secure elements before accepting live card payments.</p></section>
+
+          <label class="checkout-consent"><input type="checkbox" name="terms" required><span>I agree to the order, delivery, returns, and privacy terms. *</span></label><button class="button checkout-pay-button" type="submit" data-pay-button>Continue to secure payment <span>→</span></button><div class="checkout-message" role="status" data-checkout-message hidden></div>
+        </form>
+
+        <aside class="checkout-summary"><p class="eyebrow">Your order</p><h2>Order summary.</h2><div class="checkout-items" data-checkout-items></div><dl><div><dt>Subtotal</dt><dd data-checkout-subtotal>€0.00</dd></div><div><dt>Delivery</dt><dd>Calculated after address</dd></div><div class="checkout-total"><dt>Total today</dt><dd data-checkout-total>€0.00</dd></div></dl><p class="checkout-summary-note" data-checkout-note>Taxes are included where applicable. Delivery is confirmed before payment.</p><div class="checkout-assurance"><span>✓</span><p><strong>Secure online payment</strong><small>No cash-on-delivery option. Card details are never stored by this website.</small></p></div></aside>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="site-footer checkout-footer"><div class="container footer-bottom"><span>© <b data-year></b> LARK Fencing.</span><span><a href="returns.html">Returns &amp; refunds</a> · <a href="contact.html">Need help?</a></span></div></footer>
+</body>
+</html>
