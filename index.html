@@ -93,10 +93,23 @@
 
     <section class="customer-reviews-section section" aria-labelledby="home-reviews-title">
       <div class="container reviews-heading"><div><p class="eyebrow">Customer testimonials</p><h2 id="home-reviews-title">Trusted for the advice.<br><em>Remembered for the finish.</em></h2></div><div class="review-summary"><span class="review-stars" aria-label="Five-star feedback">★★★★★</span><p>Feedback from homeowners and businesses choosing supply-only products or complete installation.</p></div></div>
-      <div class="container review-grid">
-        <article class="review-card"><span class="review-stars" aria-hidden="true">★★★★★</span><blockquote>“The advice was clear from the beginning, and the finished fence looks exactly right for the garden.”</blockquote><footer><span>KH</span><p><strong>Kildare homeowner</strong><small>Timber fence installation</small></p></footer></article>
-        <article class="review-card"><span class="review-stars" aria-hidden="true">★★★★★</span><blockquote>“Everything was measured carefully, explained properly, and left clean and tidy when the work was complete.”</blockquote><footer><span>DC</span><p><strong>Dublin customer</strong><small>Supply and professional fitting</small></p></footer></article>
-        <article class="review-card"><span class="review-stars" aria-hidden="true">★★★★★</span><blockquote>“A straightforward service with practical recommendations and a strong, professional result.”</blockquote><footer><span>LB</span><p><strong>Local business customer</strong><small>Commercial boundary project</small></p></footer></article>
+      <div class="container">
+        <div class="review-carousel" data-review-carousel role="region" aria-roledescription="carousel" aria-label="Customer testimonials" tabindex="0">
+          <div class="review-carousel-viewport">
+            <div class="review-grid" data-review-track>
+              <article class="review-card"><span class="review-stars" aria-hidden="true">★★★★★</span><blockquote>“The advice was clear from the beginning, and the finished fence looks exactly right for the garden.”</blockquote><footer><span>KH</span><p><strong>Kildare homeowner</strong><small>Timber fence installation</small></p></footer></article>
+              <article class="review-card"><span class="review-stars" aria-hidden="true">★★★★★</span><blockquote>“Everything was measured carefully, explained properly, and left clean and tidy when the work was complete.”</blockquote><footer><span>DC</span><p><strong>Dublin customer</strong><small>Supply and professional fitting</small></p></footer></article>
+              <article class="review-card"><span class="review-stars" aria-hidden="true">★★★★★</span><blockquote>“A straightforward service with practical recommendations and a strong, professional result.”</blockquote><footer><span>LB</span><p><strong>Local business customer</strong><small>Commercial boundary project</small></p></footer></article>
+            </div>
+          </div>
+          <div class="review-carousel-controls">
+            <button type="button" data-review-prev aria-label="Previous testimonial">&larr;</button>
+            <div class="review-carousel-dots" data-review-dots aria-label="Choose a testimonial"></div>
+            <button type="button" data-review-next aria-label="Next testimonial">&rarr;</button>
+            <button class="review-carousel-toggle" type="button" data-review-toggle aria-label="Pause testimonials">Pause</button>
+          </div>
+          <p class="sr-only" data-review-carousel-status aria-live="polite" aria-atomic="true"></p>
+        </div>
       </div>
       <div class="container review-share"><div><p class="eyebrow light">Already a LARK customer?</p><h3>Share your experience.</h3><p>Your comments help other customers choose with confidence and help our team keep improving.</p></div><button class="button button-light" type="button" data-review-open>Write a review <span>&rarr;</span></button></div>
     </section>

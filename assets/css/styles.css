@@ -602,6 +602,22 @@ h1{font-size:clamp(2.15rem,5.2vw,4.7rem)!important}
 .review-card footer p,.about-testimonial-person p{display:flex;flex-direction:column;margin:0}
 .review-card footer strong,.about-testimonial-person strong{font:700 .8rem Manrope}
 .review-card footer small,.about-testimonial-person small{color:var(--ink-soft);font-size:.68rem}
+.review-carousel{position:relative}
+.review-carousel:focus-visible{outline:2px solid var(--cedar);outline-offset:8px}
+.review-carousel-controls{display:none}
+.review-carousel.is-enhanced .review-carousel-viewport{overflow:hidden}
+.review-carousel.is-enhanced .review-grid{display:flex;gap:0;transition:transform .55s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.review-carousel.is-enhanced .review-card{flex:0 0 100%;min-height:260px;padding:38px 42px;box-shadow:none}
+.review-carousel.is-enhanced .review-card blockquote{max-width:880px;margin:23px 0 34px;font-size:clamp(1.18rem,2vw,1.55rem);line-height:1.5}
+.review-carousel.is-enhanced .review-carousel-controls{display:grid;grid-template-columns:44px minmax(120px,1fr) 44px auto;align-items:center;gap:12px;margin-top:18px}
+.review-carousel-controls>button:not(.review-carousel-toggle){width:44px;height:44px;border:1px solid #cdd2ca;background:#fff;color:var(--ink);cursor:pointer;font-size:1.05rem;transition:border-color .2s,color .2s,background .2s}
+.review-carousel-controls>button:not(.review-carousel-toggle):hover{border-color:var(--cedar);color:var(--cedar)}
+.review-carousel-dots{display:flex;align-items:center;justify-content:center;gap:8px}
+.review-carousel-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#b9beb6;cursor:pointer;transition:width .2s,background .2s,border-radius .2s}
+.review-carousel-dots button[aria-current="true"]{width:27px;border-radius:8px;background:var(--cedar)}
+.review-carousel-toggle{border:0;background:transparent;color:var(--ink-soft);padding:8px 0 8px 12px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+.review-carousel-controls button:focus-visible{outline:2px solid var(--cedar);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.review-carousel.is-enhanced .review-grid{transition:none}}
 .review-share{margin-top:22px;background:var(--cedar);color:#fff;padding:30px 34px;display:flex;justify-content:space-between;align-items:center;gap:35px}
 .review-share .eyebrow{margin-bottom:5px}
 .review-share h3{font-size:1.55rem;margin:0 0 5px}
@@ -650,6 +666,10 @@ body.review-modal-open{overflow:hidden}
   .review-grid{grid-template-columns:1fr}
   .review-card:last-child:nth-child(odd){grid-column:auto}
   .review-card{padding:23px 20px}
+  .review-carousel.is-enhanced .review-card{min-height:310px;padding:27px 22px}
+  .review-carousel.is-enhanced .review-card blockquote{font-size:1.08rem;margin:20px 0 28px}
+  .review-carousel.is-enhanced .review-carousel-controls{grid-template-columns:42px 1fr 42px;gap:8px}
+  .review-carousel-toggle{grid-column:1/-1;justify-self:center;padding:4px 10px}
   .review-share{align-items:flex-start;flex-direction:column;padding:26px 22px}
   .review-share .button{width:100%}
   .about-testimonial-section{padding:52px 0}
