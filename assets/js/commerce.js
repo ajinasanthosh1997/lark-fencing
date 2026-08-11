@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const accountKey='larkAccount',cartKey='larkCart';
   const readJSON=(storage,key,fallback)=>{try{const value=JSON.parse(storage.getItem(key));return value??fallback}catch{return fallback}};
   const clampQuantity=value=>Math.max(1,Math.min(99,Number(value)||1));
-  const parsePriceCents=value=>{const cleaned=String(value||'').replace(/[^0-9.,]/g,'').replace(',','.');const amount=Number(cleaned);return Number.isFinite(amount)?Math.round(amount*100):null};
+  const parsePriceCents=value=>{const cleaned=String(value||'').replace(/[^0-9.,]/g,'').replace(',','.');if(!cleaned)return null;const amount=Number(cleaned);return Number.isFinite(amount)?Math.round(amount*100):null};
   const safeImage=value=>String(value||'').startsWith('assets/images/')?String(value):'assets/images/products/hd/solid-cottage.png';
   const normaliseItem=item=>{const name=String(item?.name||'Fence product');const parsed=Number.isInteger(item?.priceCents)?item.priceCents:parsePriceCents(item?.priceLabel||item?.price);return {id:String(item?.id||name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')),name,category:String(item?.category||'LARK product'),image:safeImage(item?.image),description:String(item?.description||'Final specifications confirmed by LARK Fencing.'),priceLabel:parsed===null?'Request price':String(item?.priceLabel||item?.price||''),priceCents:parsed,quantity:clampQuantity(item?.quantity)}};
   const readCart=()=>{const value=readJSON(localStorage,cartKey,[]);return Array.isArray(value)?value.map(normaliseItem):[]};

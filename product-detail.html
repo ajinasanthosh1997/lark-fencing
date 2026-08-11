@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="View LARK Fencing product details, add products to your cart, or buy online.">
+  <meta name="description" content="View LARK Fencing product details, add products to your cart, and continue to secure card checkout.">
   <title>Product Details | LARK Fencing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,12 +17,32 @@
 
   <main id="main" class="detail-main">
     <div id="product-detail-app">
-      <section class="detail-hero"><div class="container detail-grid">
-        <div class="detail-media"><a class="detail-back" href="catalog.html">← Back to all products</a><div class="detail-image-stage"><span id="detail-category" class="tag">Timber fencing</span><img id="detail-image" src="assets/images/products/hd/solid-cottage.png" alt="Solid Cottage fence panel"></div></div>
-        <div class="detail-copy"><p class="eyebrow" id="detail-meta">LARK product catalogue</p><h1 id="detail-name">Solid Cottage Fence Panel</h1><p class="detail-description" id="detail-description">Contact LARK Fencing for product specifications and current availability.</p><ul class="detail-points"><li>Supply only or professional fitting available</li><li>Catalogue price: Request price</li><li>Delivery availability confirmed before dispatch</li></ul>
-          <div class="detail-purchase"><div class="detail-purchase-top"><div class="detail-price"><small>Catalogue price</small><strong id="detail-price">Request price</strong></div><div class="detail-quantity"><small>Quantity</small><div class="quantity-control quantity-control-light"><button type="button" data-quantity="minus" aria-label="Decrease quantity">−</button><output id="quantity-output">1</output><button type="button" data-quantity="plus" aria-label="Increase quantity">+</button></div><input id="order-quantity" type="hidden" value="1"></div></div><div class="detail-actions"><button class="button" type="button" data-add-cart>Add to cart <span>→</span></button><button class="button button-outline" type="button" data-buy-now>Buy now <span>→</span></button></div><p class="detail-payment-note" data-detail-payment-note>Card payment is available at secure checkout for priced products.</p></div>
+      <section class="detail-hero">
+        <div class="container detail-grid">
+          <div class="detail-media">
+            <a class="detail-back" href="catalog.html">← Back to all products</a>
+            <div class="detail-image-stage"><span id="detail-category" class="tag">Timber fencing</span><img id="detail-image" src="assets/images/products/hd/solid-cottage.png" alt="Solid Cottage fence panel"></div>
+          </div>
+          <div class="detail-copy">
+            <p class="eyebrow" id="detail-meta">LARK product catalogue</p>
+            <h1 id="detail-name">Solid Cottage Fence Panel</h1>
+            <p class="detail-description" id="detail-description">Contact LARK Fencing for product specifications and current availability.</p>
+            <ul class="detail-points"><li>Supply only or professional fitting available</li><li>Catalogue price: Request price</li><li>Delivery availability confirmed before payment</li></ul>
+
+            <div class="detail-purchase">
+              <div class="detail-purchase-top">
+                <div class="detail-price"><small>Catalogue price</small><strong id="detail-price">Request price</strong></div>
+                <div class="detail-quantity"><small>Quantity</small><div class="quantity-control quantity-control-light"><button type="button" data-quantity="minus" aria-label="Decrease quantity">−</button><output id="quantity-output">1</output><button type="button" data-quantity="plus" aria-label="Increase quantity">+</button></div><input id="order-quantity" type="hidden" value="1"></div>
+              </div>
+              <div class="detail-actions">
+                <button class="button detail-cart-button" type="button" data-add-cart>Add to cart <span>→</span></button>
+                <button class="button detail-buy-button" type="button" data-buy-now>Buy now <span>→</span></button>
+              </div>
+              <p class="detail-payment-note" data-detail-payment-note>Secure online card payment is available at checkout for products with a listed price.</p>
+            </div>
+          </div>
         </div>
-      </div></section>
+      </section>
     </div>
   </main>
 
