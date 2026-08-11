@@ -677,3 +677,6 @@ body.review-modal-open{overflow:hidden}
   .review-dialog{max-height:calc(100vh - 24px);padding:30px 20px 22px}
   .review-dialog h2{font-size:1.75rem}
 }
+
+/* Contact gallery image: completed project with no people */
+.contact-visual-image{background-image:url('../images/site/contact-fence-project-v3-no-people.png')}
