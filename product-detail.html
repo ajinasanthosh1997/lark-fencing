@@ -39,11 +39,40 @@
                 <button class="button detail-buy-button" type="button" data-buy-now>Buy now <span>→</span></button>
               </div>
               <p class="detail-payment-note" data-detail-payment-note>Secure online card payment is available at checkout for products with a listed price.</p>
+              <a class="detail-calculator-link" href="#detail-fence-calculator">Calculate materials for this project <span>&rarr;</span></a>
+              <button class="detail-review-link" type="button" data-review-open data-review-context="product">Write a product review <span>&rarr;</span></button>
             </div>
           </div>
         </div>
       </section>
     </div>
+
+    <section class="fence-calculator-section detail-calculator-section" id="detail-fence-calculator" data-fence-calculator data-detail-calculator aria-labelledby="detail-fence-calculator-title">
+      <div class="container calculator-heading">
+        <div><p class="eyebrow light">Project calculator</p><h2 id="detail-fence-calculator-title">Calculate this fence.<br><em>Plan before you buy.</em></h2></div>
+        <p>The exact product is selected automatically. Enter your total boundary length and required height to estimate how many units you need, post positions, coverage, and available material pricing.</p>
+      </div>
+      <div class="container calculator-shell">
+        <div class="calculator-controls">
+          <label class="calculator-field"><span>Fence product</span><select data-calc-product aria-label="Fence product"></select></label>
+          <div class="calculator-unit" role="group" aria-label="Measurement unit"><button class="active" type="button" data-calc-unit="m" aria-pressed="true">Metres</button><button type="button" data-calc-unit="ft" aria-pressed="false">Feet</button></div>
+          <div class="calculator-measures">
+            <label class="calculator-field"><span>Total fence length</span><div><input type="number" min="1" max="300" step="0.1" value="20" data-calc-length inputmode="decimal"><b data-calc-unit-label>m</b></div></label>
+            <label class="calculator-field"><span>Required height</span><div><input type="number" min="0.6" max="3" step="0.1" value="1.8" data-calc-height inputmode="decimal"><b data-calc-unit-label>m</b></div></label>
+          </div>
+          <p class="calculator-tip"><span aria-hidden="true">i</span>Measure each straight boundary run and add the lengths together. Gates and corners are confirmed during the final review.</p>
+          <button class="button calculator-button" type="button" data-calc-run>Calculate materials <span>&rarr;</span></button>
+        </div>
+        <aside class="calculator-result" aria-live="polite">
+          <p class="eyebrow">Your estimate</p><h3 data-calc-range>Solid Cottage Fence Panel plan</h3>
+          <div class="calculator-dimensions"><span>Dimensions</span><strong data-calc-dimensions>20m &times; 1.8m</strong></div>
+          <div class="calculator-stats"><div><span data-calc-panels-label>Panels required</span><strong data-calc-panels>12</strong></div><div><span>Post positions</span><strong data-calc-posts>13</strong></div><div><span>Planned coverage</span><strong data-calc-coverage>21.6m</strong></div></div>
+          <div class="calculator-price"><span data-calc-price-label>Price after review</span><strong data-calc-price>Request quote</strong></div>
+          <p data-calc-note>Estimate uses standard 1.8m-wide timber panel bays. Product style, available heights, corners, gates, delivery, and site conditions are confirmed by LARK Fencing.</p>
+          <div class="calculator-actions"><a class="button" href="quote.html" data-calc-quote>Get an exact quote <span>&rarr;</span></a><a class="text-link" href="catalog.html">Browse this range</a></div>
+        </aside>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand" href="index.html"><img src="assets/images/logo.png" alt=""><span>LARK Fencing</span></a><p>Quality fencing supplied and fitted across Kildare and Dublin.</p></div><div><h3>Explore</h3><a href="catalog.html">Collections</a><a href="product.html">SmartFence</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a href="quote.html">Free quote</a></div><div><h3>Dublin branch</h3><p>Mon–Fri 8:30am–5pm · Sat 9am–5pm<br><a href="mailto:larkfencing@yahoo.com">larkfencing@yahoo.com</a><br><a href="mailto:info@larkfencing.ie">info@larkfencing.ie</a><br><a href="tel:+353899480832">089 948 0832</a></p></div></div><div class="container footer-bottom"><span>© <b data-year></b> LARK Fencing.</span><span><a href="returns.html">Returns &amp; refunds</a> · <a href="contact.html">Contact</a></span></div></footer>
