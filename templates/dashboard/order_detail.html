@@ -1,0 +1,91 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}Order {{ order.order_number }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'dashboard/order-workflow.css' %}?v=20260818-1">
+<section class="order-heading">
+  <div>
+    <p class="overline">Order detail</p>
+    <h1>{{ order.order_number }}</h1>
+    <p>Placed {{ order.created_at|date:'d M Y, H:i' }} · {{ order.get_fulfilment_method_display }}</p>
+  </div>
+  <div class="order-heading-actions">
+    <span class="order-status status-{{ order.status }}">{{ order.get_status_display }}</span>
+    <button class="secondary" type="button" onclick="window.print()">Print order</button>
+    <a class="secondary" href="{% url 'dashboard-list' 'orders' %}">← All orders</a>
+  </div>
+</section>
+
+<div class="order-detail-layout">
+  <main class="order-detail-main">
+    <section class="order-card order-products">
+      <div class="order-card-heading"><div><p class="overline">Products</p><h2>Ordered items</h2></div><span>{{ order.items.count }} line{{ order.items.count|pluralize }}</span></div>
+      <div class="order-item-list">
+        {% for item in order.items.all %}
+        <article class="order-item">
+          {% if item.product %}<img src="{{ item.product.storefront_image_url }}" alt="">{% else %}<span class="order-item-placeholder">No image</span>{% endif %}
+          <div class="order-item-copy">
+            <strong>{{ item.product_name }}</strong>
+            {% if item.variant_name %}<span>{{ item.variant_name }}</span>{% endif %}
+            <small>SKU {{ item.sku }}</small>
+            {% if item.customization.entries %}<details><summary>Product details</summary><pre>{{ item.customization.entries }}</pre></details>{% endif %}
+          </div>
+          <div class="order-item-quantity"><span>Quantity</span><strong>{{ item.quantity }}</strong></div>
+          <div class="order-item-price"><span>{{ order.currency }} {{ item.unit_price }} each</span><strong>{{ order.currency }} {{ item.line_total }}</strong></div>
+        </article>
+        {% empty %}<p class="empty">No order lines were recorded.</p>{% endfor %}
+      </div>
+      <dl class="order-totals">
+        <div><dt>Products subtotal</dt><dd>{{ order.currency }} {{ order.subtotal }}</dd></div>
+        <div><dt>Delivery</dt><dd>{{ order.currency }} {{ order.delivery_fee }}</dd></div>
+        <div><dt>Order total</dt><dd>{{ order.currency }} {{ order.total }}</dd></div>
+      </dl>
+    </section>
+
+    <section class="order-card">
+      <div class="order-card-heading"><div><p class="overline">Fulfilment</p><h2>Customer and delivery</h2></div></div>
+      <div class="order-contact-grid">
+        <div><span>Customer</span><strong>{{ order.first_name }} {{ order.last_name }}</strong><a href="mailto:{{ order.email }}">{{ order.email }}</a><a href="tel:{{ order.phone }}">{{ order.phone }}</a></div>
+        <div><span>Delivery address</span><strong>{{ order.address_line_1 }}</strong>{% if order.address_line_2 %}<p>{{ order.address_line_2 }}</p>{% endif %}<p>{{ order.city }}{% if order.county %}, {{ order.county }}{% endif %}</p>{% if order.postal_code %}<p>{{ order.postal_code }}</p>{% endif %}<p>{{ order.country_code }}</p></div>
+        <div><span>Customer notes</span><p>{{ order.customer_notes|default:'No customer notes.'|linebreaksbr }}</p></div>
+      </div>
+      <details class="order-edit-details"><summary>Edit customer and delivery details</summary><form method="post">{% csrf_token %}<input type="hidden" name="action" value="save_delivery"><div class="order-edit-grid">{% for field in delivery_form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<b>*</b>{% endif %}</label>{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{% for error in field.errors %}<em>{{ error }}</em>{% endfor %}</div>{% endfor %}</div><button class="primary" type="submit">Save customer details</button></form></details>
+    </section>
+
+    <section class="order-card order-notes-card">
+      <div class="order-card-heading"><div><p class="overline">Private</p><h2>Internal staff notes</h2></div></div>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="save_notes"><label for="{{ notes_form.staff_notes.id_for_label }}">{{ notes_form.staff_notes.label }}</label>{{ notes_form.staff_notes }}<small>{{ notes_form.staff_notes.help_text }}</small><button class="primary" type="submit">Save internal notes</button></form>
+    </section>
+  </main>
+
+  <aside class="order-detail-sidebar">
+    <section class="order-card order-workflow-card">
+      <p class="overline">Workflow</p><h2>Update order status</h2>
+      <ol class="workflow-progress" aria-label="Complete order workflow">
+        {% for step in workflow_steps %}<li class="workflow-step {{ step.state }}"><span>{{ forloop.counter }}</span><small>{{ step.label }}</small></li>{% endfor %}
+      </ol>
+      <p class="workflow-help">The tracker shows every stage. The action menu below only shows valid next steps, so statuses cannot be skipped accidentally.</p>
+      <div class="current-order-state"><span>Current status</span><strong>{{ order.get_status_display }}</strong></div>
+      {% if status_transitions %}
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="change_status"><label for="next-status">Next action</label><select id="next-status" name="next_status" required>{% for value, label in status_transitions %}<option value="{{ value }}">{{ label }}</option>{% endfor %}</select><label for="status-note">Activity note <small>Optional</small></label><textarea id="status-note" name="status_note" rows="3" maxlength="1000" placeholder="Reason, delivery reference, or useful context"></textarea><button class="primary" type="submit">Apply status action</button></form>
+      {% else %}<p class="workflow-complete">No further workflow actions are available for this order.</p>{% endif %}
+      {% if order.inventory_restocked_at %}<p class="restock-note">✓ Inventory restored {{ order.inventory_restocked_at|date:'d M Y, H:i' }}</p>{% endif %}
+    </section>
+
+    <section class="order-card order-payment-card">
+      <p class="overline">Payment</p><h2>Cash on delivery</h2>
+      {% if payment %}
+      <dl><div><dt>Method</dt><dd>{{ payment.get_method_display }}</dd></div><div><dt>Amount due</dt><dd>{{ payment.currency }} {{ payment.amount }}</dd></div><div><dt>Status</dt><dd><span class="payment-status payment-{{ payment.status }}">{{ payment.get_status_display }}</span></dd></div>{% if payment.paid_at %}<div><dt>Cash collected</dt><dd>{{ payment.paid_at|date:'d M Y, H:i' }}</dd></div>{% endif %}</dl>
+      {% if payment.method == 'cash_on_delivery' and payment.status != 'paid' and payment.status != 'cancelled' %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="mark_cash_paid"><button class="primary" type="submit">Mark cash collected</button></form>{% endif %}
+      {% else %}<p class="empty">No payment record is attached to this order.</p>{% endif %}
+    </section>
+
+    <section class="order-card order-timeline-card">
+      <p class="overline">Activity</p><h2>Status history</h2>
+      <ol class="order-timeline">
+        {% for entry in order.status_history.all %}<li><span></span><div><strong>{{ entry.get_new_status_display }}</strong><time>{{ entry.created_at|date:'d M Y, H:i' }}</time>{% if entry.changed_by %}<small>By {{ entry.changed_by.get_full_name|default:entry.changed_by.username }}</small>{% else %}<small>Storefront</small>{% endif %}{% if entry.note %}<p>{{ entry.note }}</p>{% endif %}</div></li>{% empty %}<li><span></span><div><strong>{{ order.get_status_display }}</strong><time>{{ order.created_at|date:'d M Y, H:i' }}</time><small>Order created before activity tracking was enabled</small></div></li>{% endfor %}
+      </ol>
+    </section>
+  </aside>
+</div>
+{% endblock %}
